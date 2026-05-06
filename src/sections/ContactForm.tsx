@@ -117,6 +117,7 @@ function ContactForm() {
 
         {/* Hidden Netlify Form */}
         <form name="contact" data-netlify="true" hidden>
+          <input type="hidden" name="form-name" value="contact" />
           <input type="email" name="email" />
           <input type="tel" name="phoneNumber" />
           <textarea name="enquiry"></textarea>
