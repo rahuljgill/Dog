@@ -5,7 +5,7 @@ const linkStyle =
 
 function Navbar() {
   return (
-    <div className="fixed top-0 left-0 z-20 w-full bg-black/50 backdrop-blur-md">
+    <div className="fixed top-0 left-0 z-20 hidden w-full bg-black/50 backdrop-blur-md md:block">
       <div className="flex items-center justify-between px-6 py-4 text-white">
         {/* Logo */}
         <a href="#home" className="flex h-12 w-20 items-center overflow-hidden">

@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+
 import dogVideo from "../assets/dog.mp4";
+import Fallback from "../assets/Fallback.png";
+
 import Navbar from "../components/Navbar";
+
 import Services from "../sections/Services";
 import FAQ from "../sections/FAQ";
 import ContactForm from "../sections/ContactForm";
@@ -17,7 +21,11 @@ function Home() {
       gsap.fromTo(
         videoRef.current,
         { scale: 1.3 },
-        { scale: 1, duration: 3, ease: "power2.out" },
+        {
+          scale: 1,
+          duration: 3,
+          ease: "power2.out",
+        },
       );
     }
   }, []);
@@ -25,13 +33,23 @@ function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section id="home" className="relative h-screen w-full overflow-hidden">
+      <section
+        id="home"
+        className="relative min-h-[100svh] w-full overflow-hidden"
+      >
         <Navbar />
 
-        {/* Background video */}
+        {/* Mobile fallback image */}
+        <img
+          src={Fallback}
+          alt="Dog Grooming"
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+        />
+
+        {/* Desktop video */}
         <video
           ref={videoRef}
-          className="absolute top-0 left-0 h-full w-full object-cover"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
           src={dogVideo}
           autoPlay
           loop
@@ -40,12 +58,15 @@ function Home() {
         />
 
         {/* Dark overlay */}
-        <div className="absolute top-0 left-0 h-full w-full bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
 
         {/* Content */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-white">
-          <h1 className="mb-4 text-4xl font-bold">Oxford Dog Grooming</h1>
-          <p className="text-lg">
+        <div className="relative z-10 flex h-[100svh] flex-col items-center justify-center px-6 text-center text-white">
+          <h1 className="mb-4 text-4xl font-bold md:text-6xl">
+            Oxford Dog Grooming
+          </h1>
+
+          <p className="max-w-xl text-base text-gray-200 md:text-lg">
             We provide the best grooming services for your beloved pets.
           </p>
         </div>
@@ -70,7 +91,7 @@ function Home() {
       <LocationMap />
 
       {/* Footer */}
-      <footer className="w-full bg-black text-white py-8">
+      <footer className="w-full bg-black py-8 text-white">
         <div className="mx-auto max-w-5xl px-6 text-center text-sm text-gray-400">
           © 2026 Oxford Dog Grooming. All rights reserved.
         </div>

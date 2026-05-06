@@ -15,18 +15,18 @@ type ServiceModalProps = {
 
 function ServiceModal({ service, onClose }: ServiceModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 px-4 py-6 backdrop-blur-sm md:items-center">
       <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-xl font-bold shadow-md transition hover:bg-black hover:text-white"
+          className="sticky top-4 z-20 ml-auto mr-4 mt-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold shadow-md transition hover:bg-black hover:text-white"
         >
           ×
         </button>
 
         {/* Header */}
-        <div className="bg-gradient-to-br from-orange-100 to-yellow-50 px-6 pt-10 pb-8 text-center">
+        <div className="bg-linear-to-br from-orange-100 to-yellow-50 px-6 pt-10 pb-8 text-center">
           <span className="inline-block rounded-full bg-black px-4 py-1 text-sm font-semibold text-white">
             {service.price}
           </span>
