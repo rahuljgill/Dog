@@ -137,9 +137,7 @@ function Reviews() {
           >
             <span className="text-lg text-yellow-400">⭐</span>
 
-            <span className="font-semibold text-gray-800">
-              View More Reviews on
-            </span>
+            <span className="font-semibold text-gray-800">View Reviews on</span>
 
             <span className="font-bold">
               <span className="text-blue-500">G</span>
