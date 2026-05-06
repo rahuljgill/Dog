@@ -56,36 +56,39 @@ function ContactForm() {
 
     if (!email.trim()) {
       setError("Email is required.");
+      setSuccess("");
       return;
     }
 
     if (!email.includes("@")) {
       setError("Please enter a valid email address.");
+      setSuccess("");
       return;
     }
 
     if (!enquiry.trim()) {
       setError("Please enter your enquiry.");
+      setSuccess("");
       return;
     }
 
     setError("");
+    setSuccess("");
 
-    const formData = new URLSearchParams();
-
-    formData.append("form-name", "contact");
-    formData.append("email", email);
-    formData.append("phoneNumber", phoneNumber);
-    formData.append("enquiry", enquiry);
+    const formData = new FormData(e.currentTarget);
 
     try {
-      await fetch("/", {
+      const response = await fetch("https://formspree.io/f/meenkbgl", {
         method: "POST",
+        body: formData,
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
         },
-        body: formData.toString(),
       });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
 
       setSuccess("Your enquiry has been sent!");
 
@@ -94,6 +97,7 @@ function ContactForm() {
       setEnquiry("");
     } catch {
       setError("Something went wrong. Please try again.");
+      setSuccess("");
     }
   }
 
@@ -115,25 +119,14 @@ function ContactForm() {
           </p>
         </div>
 
-        {/* Hidden Netlify Form */}
-        <form name="contact" data-netlify="true" hidden>
-          <input type="hidden" name="form-name" value="contact" />
-          <input type="email" name="email" />
-          <input type="tel" name="phoneNumber" />
-          <textarea name="enquiry"></textarea>
-        </form>
-
         <div className="grid gap-8 md:grid-cols-2">
           <form
             ref={formRef}
-            name="contact"
+            action="https://formspree.io/f/meenkbgl"
             method="POST"
-            data-netlify="true"
             onSubmit={handleSubmit}
             className="rounded-2xl bg-gray-50 p-6 shadow-lg"
           >
-            <input type="hidden" name="form-name" value="contact" />
-
             {error && (
               <p className="mb-4 rounded-lg bg-red-100 px-4 py-2 text-sm text-red-700">
                 {error}
