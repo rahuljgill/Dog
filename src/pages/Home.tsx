@@ -30,6 +30,22 @@ function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = "https://embed.tawk.to/6a070ce798f1241c34cac50d/1jolokq2q";
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="w-full">
       {/* Hero Section */}
