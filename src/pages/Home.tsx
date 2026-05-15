@@ -33,13 +33,18 @@ function Home() {
   useEffect(() => {
     const script = document.createElement("script");
 
-    script.type = "text/javascript";
     script.async = true;
     script.src = "https://embed.tawk.to/6a070ce798f1241c34cac50d/1jolokq2q";
     script.charset = "UTF-8";
     script.setAttribute("crossorigin", "*");
 
     document.body.appendChild(script);
+
+    window.Tawk_API = window.Tawk_API || {};
+
+    window.Tawk_API.onLoad = () => {
+      window.Tawk_API?.hideWidget?.();
+    };
 
     return () => {
       document.body.removeChild(script);
@@ -112,6 +117,13 @@ function Home() {
           © 2026 Oxford Dog Grooming. All rights reserved.
         </div>
       </footer>
+
+      <button
+        onClick={() => window.Tawk_API?.maximize?.()}
+        className="fixed bottom-6 right-6 flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-white shadow-lg transition hover:scale-105"
+      >
+        💬 Chat with us
+      </button>
     </div>
   );
 }
